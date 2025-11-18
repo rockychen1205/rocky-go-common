@@ -3,6 +3,7 @@ package logger
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"time"
 
@@ -66,4 +67,9 @@ func (l *Logger) Debug(format string, args ...interface{}) {
 func (l *Logger) Fatal(format string, args ...interface{}) {
 	l.Error(format, args...)
 	os.Exit(1)
+}
+
+// NewStdLogger creates a new standard library logger.
+func NewStdLogger(prefix string) *log.Logger {
+	return log.New(os.Stdout, prefix, log.LstdFlags)
 }
